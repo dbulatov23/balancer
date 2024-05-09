@@ -61,7 +61,7 @@ func getUser(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	if cnt == 0 {
-		http.Error(w, "Пользователь не найден", http.StatusNoContent)
+		http.Error(w, "User not found", http.StatusNoContent)
 		return
 	}
 	resp, err := json.Marshal(users[ind])
@@ -73,7 +73,7 @@ func getUser(w http.ResponseWriter, r *http.Request) {
 	w.Write(resp)
 }
 
-func createUsers(w http.ResponseWriter, r *http.Request) {
+func createUser(w http.ResponseWriter, r *http.Request) {
 	var user User
 	var buf bytes.Buffer
 	var cnt_key int
@@ -106,13 +106,13 @@ func main() {
 	r := chi.NewRouter()
 	// здесь регистрируйте ваши обработчики
 	r.Get("/users", getUsers)
-	r.Post("/users", createUsers)
+	r.Post("/users", createUser)
 	r.Get("/users/{id}", getUser)
 
 	env := os.Getenv("ADDRESS")
 	fmt.Println("starting service", env)
 	if err := http.ListenAndServe(env, r); err != nil {
-		fmt.Printf("Ошибка при запуске сервера: %s", err.Error())
+		fmt.Printf("Error starting the server: %s", err.Error())
 		return
 	}
 
