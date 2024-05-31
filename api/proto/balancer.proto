@@ -6,19 +6,15 @@ option go_package = "balancer/api";
 
 service User{
     rpc  getUser(GetUserRequest) returns (UserInfo){}
-    rpc  getUsers (GetUsersRequest) returns (GetUsersResponse){}
-    rpc  createUser (UserInfo) returns (CreateUserResponse){}
+    rpc  getUsers (Empty) returns (GetUsersResponse){}
+    rpc  createUser (UserInfo) returns (Empty){}
 }
 
 message GetUserRequest{
     int32 id = 1;
 }
 
-message GetUsersRequest{
-}
-
-message CreateUserResponse{
-}
+message Empty {}
 
 message UserInfo {
     int32 id = 1;

@@ -5,7 +5,6 @@ import (
 	b "balancer/pkg/api"
 	"context"
 	"errors"
-	"fmt"
 )
 
 type UserInfo struct {
@@ -87,7 +86,6 @@ func (*UserInfo) CreateUser(ctx context.Context, req *api.UserInfo) (*api.Create
 			break
 		}
 	}
-	fmt.Println(cnt_key)
 	if cnt_key != 0 {
 		return str, nil
 	}
